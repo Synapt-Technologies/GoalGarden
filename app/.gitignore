@@ -36,4 +36,5 @@ build/
 .vscode/
 
 ### Development ###
-/dev/
+/dev/.
+!/dev/.gitignore
