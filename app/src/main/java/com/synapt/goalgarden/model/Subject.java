@@ -3,7 +3,6 @@ package com.synapt.goalgarden.model;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Collection;
 
 
@@ -14,17 +13,21 @@ public class Subject
     @GeneratedValue
     private Long id;
 
-    private String title;
+    private String name;
     private String description;
+    private String descriptionShort;
+
+    @OneToMany
+    private Collection<Task> tasks;
 
     @ManyToOne
-    private User creator;
+    private Organisation organisation;
 
-    //    @CreatedDate // Doesn't work. Hibernate feature?
+//    VV LOGGING VV
+
     @Column(name = "create_timestamp")
     private LocalDateTime created;
 
-    //    @LastModifiedDate // Doesn't work. Hibernate feature?
     @Column(name = "modified_timestamp")
     private LocalDateTime modified;
 
@@ -43,7 +46,7 @@ public class Subject
     @Override
     public String toString()
     {
-        return this.title + " - #" + 0 + " tasks";
+        return this.name + " - #" + tasks.size() + " tasks";
     }
 
     // V GETTERS AND SETTERS V
@@ -63,14 +66,24 @@ public class Subject
         return modified;
     }
 
-    public User getCreator()
+    public String getDescription()
     {
-        return creator;
+        return description;
     }
 
-    public void setCreator(User creator)
+    public void setDescription(String description)
     {
-        this.creator = creator;
+        this.description = description;
+    }
+
+    public String getDescriptionShort()
+    {
+        return descriptionShort;
+    }
+
+    public void setDescriptionShort(String descriptionShort)
+    {
+        this.descriptionShort = descriptionShort;
     }
 }
 

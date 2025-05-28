@@ -1,9 +1,7 @@
 package com.synapt.goalgarden.model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Task
@@ -11,4 +9,7 @@ public class Task
     @Id
     @GeneratedValue
     private Long id;
+
+    @ManyToOne
+    private Subject subject;
 }
